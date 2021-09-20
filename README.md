@@ -64,6 +64,19 @@ Usando Select para filtrar dados, podendo usar lógica como And e Or, ou simples
                 /* Usando com operadores lógicos */
                 SELECT * FROM tbcliente WHERE (IDADE >= 18 AND IDADE <= 22 AND SEXO = 'M') OR (cidade = 'Rio de Janeiro' OR BAIRRO = 'Jardins');
 
+Operadores lógicos possui um contexto de verdadeiro ou falso, e o MYSQL só retorna quando a query é verdadeira, mas caso queira inverter a lógica possui um operador NOT.
+
+                SELECT * FROM tabela_de_clientes WHERE NOT CIDADE = 'Rio de Janeiro';
+
+Com exemplo desta consulta usando NOT CIDADE só será retornado Cliente que (NÃO) moram no Rio de Janeiro.
+
+IN - podemos usar o in para simplificar mais o resultado seria o mesmo que o OR nesse exemplo.
+
+                SELECT * FROM tabela_de_clientes WHERE CIDADE IN ('Rio de Janeiro', 'São Paulo')
+                and (IDADE >= 20 AND IDADE <= 25);
+
+
+
 # Experiência com a plataforma de cursos.
  
 A experiência com a Alura é muito boa: a equipe consegue estar sempre atualizada sobre as novas tecnologias,
