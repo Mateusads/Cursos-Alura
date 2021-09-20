@@ -56,7 +56,13 @@ ALTER TABLE - Esse altera os componentes, no caso foi especificado que a Matricu
 
 Para incluir o campo data em MYSQL tem uma forma universal usando ANO-MES-DIA dessa forma '1993-09-14'.
 
+                INSERT INTO tbcliente (CPF, NOME, DATA_NASCIMENTO) VALUES ('00388934505','João da Silva', '1989-10-05');
 
+Usando Select para filtrar dados, podendo usar lógica como And e Or, ou simples, tabem possui algumas palavras chaves como Beetwen.
+
+                SELECT * FROM tbproduto WHERE PRECO_LISTA BETWEEN 16.007 AND 16.009; 
+                /* Usando com operadores lógicos */
+                SELECT * FROM tbcliente WHERE (IDADE >= 18 AND IDADE <= 22 AND SEXO = 'M') OR (cidade = 'Rio de Janeiro' OR BAIRRO = 'Jardins');
 
 # Experiência com a plataforma de cursos.
  
