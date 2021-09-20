@@ -72,10 +72,24 @@ Com exemplo desta consulta usando NOT CIDADE só será retornado Cliente que (N�
 
 IN - podemos usar o in para simplificar mais o resultado seria o mesmo que o OR nesse exemplo.
 
-                SELECT * FROM tabela_de_clientes WHERE CIDADE IN ('Rio de Janeiro', 'São Paulo')
-                and (IDADE >= 20 AND IDADE <= 25);
+                SELECT * FROM tabela_de_clientes WHERE CIDADE IN ('São Paulo', 'Rio de Janeiro')
+                AND (IDADE >= 20 AND IDADE <= 25);
 
+* * Retorna clientes que moram em São Paulo "OU" Rio de Janeiro com a idade entre 20 e 25 anos.
 
+LIKE - Com operador LIKE podemos buscar por algum pedaço do nome, e usando o % podemos definiar se pode ser em qualquer parte do texto '%text%', começa com ele 'texto%', ou termina '%texto', então depende onde o % for o resultado será diferente. 
+
+* Exemplo.
+
+                SELECT * FROM tabela_de_clientes WHERE NOME LIKE 'A%'
+
+* * Retorna os cliente que começam com a leta A por isso o % vai no final.
+
+DISTINCT - Na exibição não mostra sequencias repitidas, ou seja nesse exemplo abaixo o retorno será onde a junção de embalagens e tamanho não se repita, não vai exibir dois PET 2L por exemplo.
+
+                SELECT DISTINCT EMBALAGEM, TAMANHO FROM tabela_de_produtos;
+
+* * Retorna os tipo de embalagem e os tamanhos sem repetir, pode ser visto no doc. [Select usando like e Distinct]().
 
 # Experiência com a plataforma de cursos.
  
