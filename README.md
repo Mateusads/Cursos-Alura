@@ -54,6 +54,9 @@ DELETE - Diferente do Drop onde apaga elementos do Banco, DELETE apaga dados inc
 
 ALTER TABLE - Esse altera os componentes, no caso foi especificado que a Matricula é uma Primary Key, essa especificação poderia ser colocado já na criação da tabela, para fins didáticos foi inserido com Alter Table. 
 
+Para incluir o campo data em MYSQL tem uma forma universal usando ANO-MES-DIA dessa forma '1993-09-14'.
+
+
 
 # Experiência com a plataforma de cursos.
  
