@@ -26,6 +26,12 @@ Depois da configuração no eclipse sobre a url e tendo o cod. fonte da apliçã
 
 Começando em introdução do sql, no curso vamos usar o Mysql, porem tirando algumas funções especificas, são bem parecida com as SQL de outros por usar esse padrão feito por E. F. Codd.
 
+                CREATE DATABASE SUCO;
+                DROP DATABASE SUCO;
+
+Create - Criando o banco com o nome suco.
+DROP - Apagando o banco inteiro com o comando drop.
+
 Apesar de termos um monte de tipo de dados que podem ser armazenados, temos os mais comuns que vamos usar como Varchar() - como se fosse uma String em java, Int() para numeros grandes, smallint ou bigint conforme precisar, e para ponto flutuante usamos float(), mas temos outros tipos como double.
 
 Query - Seria uma consulta, porém usamos essa nomeclatura para uma sintaxe do SQL como select, create, drop entre outros, ou seja ela é o comando que será execultado, logo mais terá alguns exemplos de como usar cada um.
