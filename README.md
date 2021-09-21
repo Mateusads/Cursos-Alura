@@ -107,13 +107,13 @@ CASE - Parecido com IF case é para verificar alguma condição, temos um exempl
                                 ELSE 'PRODUTO BARATO' END AS STATUS_PRECO
                         FROM tabela_de_produtos;
 
-* * Retorno é o Nome, o preço e informando se caiu na condição Muito caro, caro, na media ou se nenhuma é Barato.
-
                 Sabor da Montanha - 700 ml - Uva	6.309	PRODUTO BARATO
                 Linha Citros - 1 Litro - Lima/Limão	7.004	PRODUTO NA MEDIA
                 Videira do Campo - 1,5 Litros - Melância	19.51	PRODUTO CARO
                 Videira do Campo - 2 Litros - Cereja/Maça	24.01	PRODUTO MUITO CARO
 
+
+* * Retorno é o Nome, o preço e informando se caiu na condição Muito caro, caro, na media ou se nenhuma é Barato.
 
 JOIN - Feito para juntar dados de duas ou mais tabelas temos vários tipos como Inner, Left, Right, Full Join.
 
@@ -138,7 +138,16 @@ JOIN - Feito para juntar dados de duas ou mais tabelas temos vários tipos como 
 
 * * Exemplo da explicação acima onde o Cliente não possui nota fical o retorno será Null;
 
-* FULL JOIN - Ele retorna tudo, tanto todos da direita como da esqueda, onde não possui associoção fica NULL, porem mesmo sendo padrão ANSI o MYSQL não da suporte para FULL, o jeito caso precisar é fazer um "Subselect" com Left e Right juntos.
+* FULL JOIN - Ele retorna tudo, tanto todos da direita como da esqueda, onde não possui associoção fica NULL, porem mesmo sendo padrão ANSI o MYSQL não da suporte para FULL, o jeito caso precisar é fazer UNION com Left e Right juntos.
+
+UNION - Tem a finalidade de juntar dois Selects que possuiem os mesmos campos.
+
+SUBSELECT - Usando o resultado de um select para aproveitar em outro select, ou seja, é feito uma consulta, e você quer usar esse resultado para fazer outra consulta, assim você faz um Subselect como exemplo abaixo.
+
+                        SELECT * FROM tabela_de_clientes 
+                        WHERE BAIRRO IN (SELECT DISTINCT BAIRRO FROM tabela_de_vendedores);
+
+* * Vemos que temos dois select dentro da tabela, o que está dentro dos parenteses retorna os bairros da tabela vendedores sem repetir, e o outro select usa isso para pesquisar cliente entre esses bairros. O resultado desses Subselect pode ser visto no doc. [SUBSELECT.sql](https://github.com/Mateusads/Cursos-Alura/blob/main/Curso_SQL/SUBSELECT.sql)
 
 
 # Experiência com a plataforma de cursos.
