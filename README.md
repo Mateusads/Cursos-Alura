@@ -147,7 +147,15 @@ SUBSELECT - Usando o resultado de um select para aproveitar em outro select, ou 
                         SELECT * FROM tabela_de_clientes 
                         WHERE BAIRRO IN (SELECT DISTINCT BAIRRO FROM tabela_de_vendedores);
 
-* * Vemos que temos dois select dentro da tabela, o que está dentro dos parenteses retorna os bairros da tabela vendedores sem repetir, e o outro select usa isso para pesquisar cliente entre esses bairros. O resultado desses Subselect pode ser visto no doc. [SUBSELECT.sql](https://github.com/Mateusads/Cursos-Alura/blob/main/Curso_SQL/SUBSELECT.sql)
+* * Vemos que temos dois select dentro da tabela, o que está dentro dos parenteses retorna os bairros da tabela vendedores sem repetir, e o outro select usa isso para pesquisar cliente entre esses bairros. O exemplos desses Subselect pode ser visto no doc. [SUBSELECT.sql](https://github.com/Mateusads/Cursos-Alura/blob/main/Curso_SQL/SUBSELECT.sql)
+
+VIEW - Como se fosse armazenar um Select para usar depois, podendo usar ele dentro de outro select usando Join como usa em outra tabela, porém é uma consulta no banco já salva em forma de view.
+
+FUNCTIONS - Cada banco possui suas proprias functions apesar de parecidas com suas peculiariedades, então bom sempre consultar o DOC. oficial da linguagem, ou sites mais didaticos como [WWW3.SCHOOL](https://www.w3schools.com/mysql/mysql_ref_functions.asp) para verificar as funções.
+* * OBS: Caso use uma linguagem antes de salvar no banco como java, python ou outras, sempre tentar fazer as funções com a propria linguagem e salvar sem usar functions, pelo motivo que se precisar mudar de banco não terá problema com elas, sendo que se você usar muitas functions SQL ao migrar o banco terá que verificar cara uma delas para trocar para nova linguagem.
+
+RELATÓRIOS - Podemos criar relatórios com os dados do Banco, para isso requer consulta estruturadas com vários SELECTS fizemos um exemplo no arquivo [CriandoRelatorio.sql](https://github.com/Mateusads/Cursos-Alura/blob/main/Curso_SQL\CriandoRelatorio.sql).
+
 
 
 # Experiência com a plataforma de cursos.
