@@ -24,7 +24,7 @@ Depois da configuração no eclipse sobre a url e tendo o cod. fonte da apliçã
 
 ## SQL
 
-Começando em introdução do sql, no curso vamos usar o Mysql, porem tirando algumas funções especificas, são bem parecida com as SQL de outros por usar esse padrão feito por E. F. Codd.
+Começando em introdução do sql, no curso vamos usar o Mysql, porem tirando algumas funções especificas, são bem parecida com as SQL de outros por usar esse padrão feito por E. F. Codd conhecido como Padrão ANSI (Instituto Nacional Americano de Padrões") 
 
                 CREATE DATABASE SUCO;
                 DROP DATABASE SUCO;
@@ -88,8 +88,58 @@ LIKE - Com operador LIKE podemos buscar por algum pedaço do nome, e usando o % 
 DISTINCT - Na exibição não mostra sequencias repitidas, ou seja nesse exemplo abaixo o retorno será onde a junção de embalagens e tamanho não se repita, não vai exibir dois PET 2L por exemplo.
 
                 SELECT DISTINCT EMBALAGEM, TAMANHO FROM tabela_de_produtos;
+                
+* * Retorna os tipo de embalagem e os tamanhos sem repetir, pode ser visto no doc. [Select usando like e Distinct](https://github.com/Mateusads/Cursos-Alura/blob/main/Curso_SQL/SELECT_USANDO_LIKE_E_DISTINCT.sql).
 
-* * Retorna os tipo de embalagem e os tamanhos sem repetir, pode ser visto no doc. [Select usando like e Distinct]().
+LIMIT - Usando sempre por ultimo em uma Query, serve para limitar a quantidade de resultados, ou seja usando LIMIT 5 traz os 5 primeiros resultados, porém podemos usar LIMIT 3,5 -> O 3 DIZ QUE APARTIR DO 3º elemento lembrando que começa a contagem do 0, e após o 3 conta mais 4 abaixo para fexar 5 elementos.
+
+                SELECT * FROM tabela_de_clientes LIMIT 4,2;
+
+* *  Retorna apartir do 4º elemento da tabela, e mais um abaixo somando 2 registros.
+
+CASE - Parecido com IF case é para verificar alguma condição, temos um exemplo que damos uma nomeclatura para dependendo do preço, se é caro ou barato.
+
+                        SELECT NOME_DO_PRODUTO, PRECO_DE_LISTA, 
+                        CASE
+                                WHEN PRECO_DE_LISTA >= 20 THEN 'PRODUTO MUITO CARO'
+                                WHEN PRECO_DE_LISTA >= 12 AND PRECO_DE_LISTA < 20 THEN 'PRODUTO CARO'
+                                WHEN PRECO_DE_LISTA >= 7 AND PRECO_DE_LISTA < 12 THEN 'PRODUTO NA MEDIA'
+                                ELSE 'PRODUTO BARATO' END AS STATUS_PRECO
+                        FROM tabela_de_produtos;
+
+* * Retorno é o Nome, o preço e informando se caiu na condição Muito caro, caro, na media ou se nenhuma é Barato.
+
+                Sabor da Montanha - 700 ml - Uva	6.309	PRODUTO BARATO
+                Linha Citros - 1 Litro - Lima/Limão	7.004	PRODUTO NA MEDIA
+                Videira do Campo - 1,5 Litros - Melância	19.51	PRODUTO CARO
+                Videira do Campo - 2 Litros - Cereja/Maça	24.01	PRODUTO MUITO CARO
+
+
+JOIN - Feito para juntar dados de duas ou mais tabelas temos vários tipos como Inner, Left, Right, Full Join.
+
+* INNER - Junta tudo em comum conforme a condição, onde não tem associação não exibe.
+
+                        SELECT A.NOME, B.NUMERO FROM 
+                        tabela_de_vendedores A INNER JOIN notas_fiscais B
+                        ON A.MATRICULA = B.MATRICULA;
+
+* * Retorna o nome dos vendedores e os numeros das notas fiscais onde Vendedor tem a Matricula igual em nota fiscal, como a explicação, o INNER só tráz os resultados onde há matriculas nas duas tabelas como um WHERE.
+
+* LEFT e RIGHT - Como o nome já diz, esquerta e direita, mas de onde? Certo o Join sempre vem no meio da ligação das duas tabelas, então a tabela descrita antes é a da Esquerda e a depois do Join é da direita. O Left retorna todos os registros que estão na esquerda e somente os com associação na direita, e ao contrario vale para o Right.
+
+                        SELECT ESQUERDA.NOME, ESQUERDA.CPF, DIREITA.CPF FROM 
+                        tabela_de_clientes ESQUERDA LEFT JOIN notas_fiscais DIREITA
+                        ON ESQUERDA.CPF = DIREITA.CPF
+
+* * Retorna todos os registros de tabela cliente no caso o nome, e da tabela de notas fiscais (direita) retorna somente os CPF que tiver associação de tabelas clientes. Certo mas se tiver cliente sem nota fiscal?? -> Ele retorna o Cliente como informado vai retornar tudo, porem na aba que aparece a nota fical fica null, segue um exemplo de um cliente que possui uma nota, e outro que não possui.
+
+                        Érica Carvalho	1471156710	1471156710
+                        Fábio Carvalho	95939180787	NULL
+
+* * Exemplo da explicação acima onde o Cliente não possui nota fical o retorno será Null;
+
+* FULL JOIN - Ele retorna tudo, tanto todos da direita como da esqueda, onde não possui associoção fica NULL, porem mesmo sendo padrão ANSI o MYSQL não da suporte para FULL, o jeito caso precisar é fazer um "Subselect" com Left e Right juntos.
+
 
 # Experiência com a plataforma de cursos.
  
