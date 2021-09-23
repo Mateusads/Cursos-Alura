@@ -154,7 +154,28 @@ VIEW - Como se fosse armazenar um Select para usar depois, podendo usar ele dent
 FUNCTIONS - Cada banco possui suas proprias functions apesar de parecidas com suas peculiariedades, então bom sempre consultar o DOC. oficial da linguagem, ou sites mais didaticos como [WWW3.SCHOOL](https://www.w3schools.com/mysql/mysql_ref_functions.asp) para verificar as funções.
 * * OBS: Caso use uma linguagem antes de salvar no banco como java, python ou outras, sempre tentar fazer as funções com a propria linguagem e salvar sem usar functions, pelo motivo que se precisar mudar de banco não terá problema com elas, sendo que se você usar muitas functions SQL ao migrar o banco terá que verificar cara uma delas para trocar para nova linguagem.
 
-RELATÓRIOS - Podemos criar relatórios com os dados do Banco, para isso requer consulta estruturadas com vários SELECTS fizemos um exemplo no arquivo [CriandoRelatorio.sql](https://github.com/Mateusads/Cursos-Alura/blob/main/Curso_SQL\CriandoRelatorio.sql).
+RELATÓRIOS - Podemos criar relatórios com os dados do Banco, para isso requer consulta estruturadas com vários SELECTS fizemos um exemplo no arquivo [CriandoRelatorio.sql](https://github.com/Mateusads/Cursos-Alura/blob/main/Curso_SQL/CriandoRelatorio.sql).
+
+
+TRIGGER - É um processo automático que realiza uma ação logo após outra for executada pelo usuário, como quando haver um DELETE criar um LOG, ou haver um intert ou update em uma tabela, outra calcular novamente alguns dados.
+
+Exemplo, podemos criar uma TRIGGER para que a tabela TAB_FATURAMENTO seja recalculada sempre que um novo registro for incluído na tabela de ITENS_NOTAS. Para isso digite e execute:
+
+                        DELIMITER //
+                        CREATE TRIGGER TG_CALCULA_FATURAMENTO_INSERT AFTER INSERT ON ITENS_NOTAS
+                        FOR EACH ROW BEGIN
+                        DELETE FROM TAB_FATURAMENTO;
+                        INSERT INTO TAB_FATURAMENTO
+                        SELECT A.DATA_VENDA, SUM(B.QUANTIDADE * B.PRECO) AS TOTAL_VENDA FROM
+                        NOTAS A INNER JOIN ITENS_NOTAS B
+                        ON A.NUMERO = B.NUMERO
+                        GROUP BY A.DATA_VENDA;
+                        END//
+* * [VER MAIS COMANDO](https://github.com/Mateusads/Cursos-Alura/blob/main/Curso_SQL/TRIGGER.sql)
+
+DEMILITTER - Estamos usando para criar a TRIGGER mais porque? -> Ao final de cada comando usamos ' ; ' mas o MYSQL vai querer execultar separado e isso ia dar problema, então trocamos o 'ponto final' do cod para DEMILITTER // mas você pode usar um outro como DEMILITTER $$ OU ## vai de como você quiser.
+
+Nesse caso dessa TRIGGER do exemplo criamos para deletar e inserir novamente atualizando o calculo do faturamento, mas caso queremos usar em UPDATE e DELETE, devemos criar uma TRIGGER para cada comando.
 
 
 
